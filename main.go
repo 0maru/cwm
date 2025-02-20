@@ -27,6 +27,10 @@ func newApp() *cli.App {
 		Usage:    "Manage code-workspace",
 		Version:  fmt.Sprintf("%s (rev:%s)", version, revision),
 		Commands: commands,
+		Action: func(ctx *cli.Context) error {
+			LoadConfig(ctx)
+			return nil
+		},
 	}
 	return app
 }
