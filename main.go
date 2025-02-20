@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/urfave/cli"
+	"github.com/urfave/cli/v2"
 )
 
 const version = "0.0.1"
@@ -22,10 +22,11 @@ func main() {
 }
 
 func newApp() *cli.App {
-	app := cli.NewApp()
-	app.Name = "cwm"
-	app.Usage = "Manage code-workspace"
-	app.Version = fmt.Sprintf("%s (rev:%s)", version, revision)
-	app.Commands = commands
+	app := &cli.App{
+		Name:     "cwm",
+		Usage:    "Manage code-workspace",
+		Version:  fmt.Sprintf("%s (rev:%s)", version, revision),
+		Commands: commands,
+	}
 	return app
 }
