@@ -5,17 +5,25 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/0maru/cwm/config"
+	"github.com/BurntSushi/toml"
 	"github.com/urfave/cli/v2"
 )
 
-func LoadConfig(ctx *cli.Context) {
+var conf *config.Config
+
+func LoadConfig(ctx *cli.Context) error {
 	configPath, err := getConfigPath()
 	if err != nil {
-		fmt.Println("failed to get config path: %w", err)
-		os.Exit(1)
+		return fmt.Errorf("failed to get config path: %w", err)
 	}
 
-	fmt.Println("config path: %s", configPath)
+	conf = config.New()
+	if _, err := toml.DecodeFile(configPath, conf); err != nil {
+		return fmt.Errorf("failed to decode config file: %w", err)
+	}
+
+	return nil
 }
 
 // getConfigPath は設定ファイルのパスを返す

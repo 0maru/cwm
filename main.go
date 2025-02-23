@@ -28,7 +28,9 @@ func newApp() *cli.App {
 		Version:  fmt.Sprintf("%s (rev:%s)", version, revision),
 		Commands: commands,
 		Action: func(ctx *cli.Context) error {
-			LoadConfig(ctx)
+			if err := LoadConfig(ctx); err != nil {
+				return err
+			}
 			return nil
 		},
 	}
