@@ -2,20 +2,11 @@ module github.com/0maru/cwm
 
 go 1.23.3
 
-<<<<<<< HEAD
 require (
 	github.com/BurntSushi/toml v1.4.0
 	github.com/stretchr/testify v1.9.0
 	github.com/urfave/cli/v2 v2.27.5
 )
-||||||| ce3fcf3
-require github.com/urfave/cli v1.22.16
-=======
-require (
-	github.com/BurntSushi/toml v1.4.0
-	github.com/urfave/cli/v2 v2.27.5
-)
->>>>>>> 100e2923d64e621000e777a6e14efd05259f43bf
 
 require (
 	github.com/cpuguy83/go-md2man/v2 v2.0.5 // indirect
