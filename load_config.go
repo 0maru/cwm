@@ -5,17 +5,62 @@ import (
 	"os"
 	"path/filepath"
 
+<<<<<<< HEAD
+	"github.com/BurntSushi/toml"
+||||||| ce3fcf3
+=======
+	"github.com/0maru/cwm/config"
+	"github.com/BurntSushi/toml"
+>>>>>>> 100e2923d64e621000e777a6e14efd05259f43bf
 	"github.com/urfave/cli/v2"
 )
 
+<<<<<<< HEAD
+// Config はTOMLファイルの構造を定義します
+type Config struct {
+	WorkspaceDir string `toml:"workspace_dir"`
+}
+
+var config Config
+
 func LoadConfig(ctx *cli.Context) {
+||||||| ce3fcf3
+func LoadConfig(ctx *cli.Context) {
+=======
+var conf *config.Config
+
+func LoadConfig(ctx *cli.Context) error {
+>>>>>>> 100e2923d64e621000e777a6e14efd05259f43bf
 	configPath, err := getConfigPath()
 	if err != nil {
+<<<<<<< HEAD
+		fmt.Printf("設定ファイルのパスの取得に失敗しました: %v\n", err)
+		os.Exit(1)
+||||||| ce3fcf3
 		fmt.Println("failed to get config path: %w", err)
+		os.Exit(1)
+=======
+		return fmt.Errorf("failed to get config path: %w", err)
+>>>>>>> 100e2923d64e621000e777a6e14efd05259f43bf
+	}
+
+<<<<<<< HEAD
+	if _, err := toml.DecodeFile(configPath, &config); err != nil {
+		fmt.Printf("設定ファイルの読み込みに失敗しました: %v\n", err)
 		os.Exit(1)
 	}
 
+	fmt.Printf("設定ファイルを読み込みました: %s\n", configPath)
+||||||| ce3fcf3
 	fmt.Println("config path: %s", configPath)
+=======
+	conf = config.New()
+	if _, err := toml.DecodeFile(configPath, conf); err != nil {
+		return fmt.Errorf("failed to decode config file: %w", err)
+	}
+
+	return nil
+>>>>>>> 100e2923d64e621000e777a6e14efd05259f43bf
 }
 
 // getConfigPath は設定ファイルのパスを返す
