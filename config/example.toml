@@ -1,0 +1,6 @@
+# code-workspaceファイルが格納されているディレクトリ
+# 実際の環境に合わせて変更してください
+root = "~/Documents/VSCode/workspaces"
+
+# 使用するエディタ（デフォルトは"code"）
+editor = "code"
