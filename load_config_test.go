@@ -11,7 +11,7 @@ import (
 func TestLoadConfig(t *testing.T) {
 	// テスト用の一時ディレクトリを作成
 	tmpDir := t.TempDir()
-	
+
 	// テスト用の設定ファイルを作成
 	testConfig := `workspace_dir = "/test/workspace"`
 	configPath := filepath.Join(tmpDir, "test_config.toml")
@@ -29,7 +29,7 @@ func TestLoadConfig(t *testing.T) {
 	LoadConfig(nil)
 
 	// 設定が正しく読み込まれたか確認
-	assert.Equal(t, "/test/workspace", config.WorkspaceDir)
+	assert.Equal(t, "/test/workspace", conf.Root)
 }
 
 func TestGetConfigPath(t *testing.T) {
@@ -58,11 +58,11 @@ func TestGetConfigPath(t *testing.T) {
 				configDir := filepath.Join(tmpDir, "cwm")
 				err := os.MkdirAll(configDir, 0755)
 				assert.NoError(t, err)
-				
+
 				configPath := filepath.Join(configDir, "cwm.toml")
 				err = os.WriteFile(configPath, []byte{}, 0644)
 				assert.NoError(t, err)
-				
+
 				t.Setenv("XDG_CONFIG_HOME", tmpDir)
 				t.Setenv("CWM_CONFIG", "")
 				return configPath
@@ -94,4 +94,4 @@ func TestGetConfigPath(t *testing.T) {
 			}
 		})
 	}
-} 
+}

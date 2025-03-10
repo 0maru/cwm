@@ -10,23 +10,9 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-<<<<<<< HEAD
-func doList(ctx *cli.Context) error {
-	// config変数はload_config.goで定義されているグローバル変数を使用
-	if config.WorkspaceDir == "" {
-		return fmt.Errorf("workspace_dirが設定されていません")
-	}
-
-	fmt.Printf("ワークスペースディレクトリ: %s\n", config.WorkspaceDir)
-	// TODO: workspace_dirからワークスペース一覧を取得して表示する処理を実装
-
-||||||| ce3fcf3
-func doList(ctx *cli.Context) error {
-	fmt.Println("list")
-=======
 var commandList = &cli.Command{
 	Name:    "list",
-	Aliases: []string{"ls"},
+	Aliases: []string{"list", "l"},
 	Usage:   "List all code-workspaces",
 	Action:  doList,
 }
@@ -77,7 +63,6 @@ func doList(c *cli.Context) error {
 		fmt.Printf("- %s\n", ws)
 	}
 
->>>>>>> 100e2923d64e621000e777a6e14efd05259f43bf
 	return nil
 }
 

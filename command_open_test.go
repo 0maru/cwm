@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"os"
 	"path/filepath"
 	"testing"
@@ -25,10 +26,11 @@ func TestDoOpenNonExistentWorkspace(t *testing.T) {
 	tmpDir := t.TempDir()
 
 	// テスト用の設定を作成
-	conf = &config.Config{
-		Root:   tmpDir,
-		Editor: "echo", // テスト用に実際に実行できるコマンドを指定
+	if conf == nil {
+		conf = &config.Config{}
 	}
+	conf.Root = tmpDir
+	conf.Editor = "echo" // テスト用に実際に実行できるコマンドを指定
 
 	// テスト用のコンテキストを作成（存在しないワークスペース名を指定）
 	app := cli.NewApp()
@@ -57,10 +59,11 @@ func TestDoOpenExistingWorkspace(t *testing.T) {
 	}
 
 	// テスト用の設定を作成
-	conf = &config.Config{
-		Root:   tmpDir,
-		Editor: "echo", // テスト用に実際に実行できるコマンドを指定
+	if conf == nil {
+		conf = &config.Config{}
 	}
+	conf.Root = tmpDir
+	conf.Editor = "echo" // テスト用に実際に実行できるコマンドを指定
 
 	// テスト用のコンテキストを作成（存在するワークスペース名を指定）
 	app := cli.NewApp()

@@ -1,7 +1,10 @@
 package config
 
 type Config struct {
-	Root   string `toml:"root"`
+	// code-workspace's root directory
+	Root string `toml:"root"`
+
+	// editor command code or cursor
 	Editor string `toml:"editor"`
 }
 
