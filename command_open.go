@@ -54,7 +54,7 @@ func doOpen(c *cli.Context) error {
 	}
 
 	// エディタコマンドを取得
-	editorCmd := conf.Editor
+	editorCmd := "cursor"
 	if editorCmd == "" {
 		// デフォルトのエディタを使用
 		editorCmd = "code"
