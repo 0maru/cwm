@@ -12,7 +12,7 @@ import (
 
 var commandList = &cli.Command{
 	Name:    "list",
-	Aliases: []string{"list", "l"},
+	Aliases: []string{"l"},
 	Usage:   "List all code-workspaces",
 	Action:  doList,
 }
