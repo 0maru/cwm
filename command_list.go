@@ -60,7 +60,7 @@ func doList(c *cli.Context) error {
 
 	fmt.Println("利用可能なワークスペース:")
 	for _, ws := range workspaces {
-		fmt.Printf("- %s\n", ws)
+		fmt.Fprintf(os.Stdout, "%s\n", ws)
 	}
 
 	return nil
@@ -79,9 +79,9 @@ func filterWorkspaces(entries []fs.DirEntry, rootDir string) []string {
 		name := entry.Name()
 		// .code-workspace 拡張子を持つファイルのみを対象とする
 		if filepath.Ext(name) == ".code-workspace" {
-			// 拡張子を除いたファイル名を追加
-			baseName := strings.TrimSuffix(name, ".code-workspace")
-			workspaces = append(workspaces, baseName)
+			// 完全なパスを構築
+			fullPath := filepath.Join(rootDir, name)
+			workspaces = append(workspaces, fullPath)
 		}
 	}
 
